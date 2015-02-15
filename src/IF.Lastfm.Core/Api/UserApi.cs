@@ -92,5 +92,16 @@ namespace IF.Lastfm.Core.Api
 
             return await command.ExecuteAsync();
         }
+        
+        public async Task<PageResponse<LastTrack>> GetLovedTracks(string username, int pagenumber = 0, int count = LastFm.DefaultPageLength)
+        {
+            var command = new UserGetLovedTracksCommand(Auth, username)
+            {
+                Page = pagenumber,
+                Count = count,
+            };
+
+            return await command.ExecuteAsync();
+        }
     }
 }
